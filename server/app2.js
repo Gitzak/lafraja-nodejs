@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const mime = require('mime');
 
+const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
+
 // Serve static files
 function serveStaticFile(filePath, res) {
     const contentType = mime.getType(filePath) || 'text/plain';
@@ -221,7 +223,6 @@ function generatePaginationButtons(currentPage, totalPages, page_name, searchTer
 
 // Route handlers implementation
 function handleIndex(req, res, parsedUrl) {
-    const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
     const movies = require(moviesFilePath);
 
     const page = Number(parsedUrl.searchParams.get('page')) || 1;
@@ -252,7 +253,6 @@ function handleIndex(req, res, parsedUrl) {
 }
 
 function handleMovies(req, res, parsedUrl) {
-    const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
     const movies = require(moviesFilePath);
 
     const page = Number(parsedUrl.searchParams.get('page')) || 1;
@@ -325,7 +325,7 @@ function handleRegister(req, res) {
 }
 
 function handleMovieDetails(req, res, parsedUrl) {
-    const movieId = parsedUrl.searchParams.get('id'); // Assuming your movies have an ID property
+    const movieId = parsedUrl.searchParams.get('id');
 
     if (!movieId) {
         res.writeHead(400, { 'Content-Type': 'text/plain' });
@@ -333,7 +333,6 @@ function handleMovieDetails(req, res, parsedUrl) {
         return;
     }
 
-    const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
     const movies = require(moviesFilePath);
 
     const movie = movies.find(movie => movie.id === movieId);
@@ -380,10 +379,9 @@ function handleMovieDetails(req, res, parsedUrl) {
 function handleSearch(req, res, parsedUrl) {
     const queryObject = parsedUrl.searchParams;
     const searchTerm = queryObject.get('q') || '';
-    const page = Number(queryObject.get('page')) || 1; // Get the page query parameter
-    const itemsPerPage = 20; // Number of items per page
+    const page = Number(queryObject.get('page')) || 1;
+    const itemsPerPage = 20;
 
-    const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
     const movies = require(moviesFilePath);
 
     const searchResults = searchMovies(searchTerm, movies, page, itemsPerPage);
