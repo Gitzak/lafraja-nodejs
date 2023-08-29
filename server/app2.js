@@ -57,12 +57,12 @@ function generateSearchResults(searchResults) {
     return searchResults.map(movie => `
     <div class="col mb-5">
         <div class="card h-100 bg-dark text-white shadow">
-            <a class"text-decoration-none" href="/details-movie.html?id=${movie.id}">
+            <a class"text-decoration-none" href="/details-movie?id=${movie.id}">
                 <img class="card-img-top img-fluid" src="${movie.imageSrc}" alt="..." />
             </a>
             <div class="card-body p-4">
                 <div class="text-left">
-                    <h5 class="fw-bolder"><a class"text-decoration-none" href="/details-movie.html?id=${movie.id}" style="
+                    <h5 class="fw-bolder"><a class"text-decoration-none" href="/details-movie?id=${movie.id}" style="
                     color: #ffffff;
                     text-decoration: none;
                 ">${movie.title}</a></h5>
@@ -85,12 +85,12 @@ function generateMovieCards(movies) {
     return movies.map(movie => `
         <div class="col mb-5">
             <div class="card h-100 bg-dark text-white shadow">
-                <a class"text-decoration-none" href="/details-movie.html?id=${movie.id}">
+                <a class"text-decoration-none" href="/details-movie?id=${movie.id}">
                     <img class="card-img-top img-fluid" src="${movie.imageSrc}" alt="..." />
                 </a>
                 <div class="card-body p-4">
                     <div class="text-left">
-                        <h5 class="fw-bolder"><a class"text-decoration-none" href="/details-movie.html?id=${movie.id}" style="
+                        <h5 class="fw-bolder"><a class"text-decoration-none" href="/details-movie?id=${movie.id}" style="
                         color: #ffffff;
                         text-decoration: none;
                     ">${movie.title}</a></h5>
@@ -147,12 +147,12 @@ function generateSimilarMovies(similarMovies) {
     return similarMovies.map(movie => `
         <div class="col mb-5">
             <div class="card h-100 bg-dark text-white shadow">
-                <a class"text-decoration-none" href="/details-movie.html?id=${movie.id}">
+                <a class"text-decoration-none" href="/details-movie?id=${movie.id}">
                     <img class="card-img-top img-fluid" src="${movie.imageSrc}" alt="..." />
                 </a>
                 <div class="card-body p-4">
                     <div class="text-left">
-                        <h5 class="fw-bolder"><a class"text-decoration-none" href="/details-movie.html?id=${movie.id}" style="
+                        <h5 class="fw-bolder"><a class"text-decoration-none" href="/details-movie?id=${movie.id}" style="
                         color: #ffffff;
                         text-decoration: none;
                     ">${movie.title}</a></h5>
@@ -232,7 +232,7 @@ function handleIndex(req, res, parsedUrl) {
 
     const movieCards = generateMovieCards(paginatedMovies);
     const totalPages = Math.ceil(movies.length / itemsPerPage);
-    const paginationButtons = generatePaginationButtons(page, totalPages, 'index.html');
+    const paginationButtons = generatePaginationButtons(page, totalPages, 'home');
 
     const templateFilePath = path.join(__dirname, '../public', 'index.html');
 
@@ -408,7 +408,7 @@ function handleSearch(req, res, parsedUrl) {
     });
 }
 
-function handleAssets(req, res, parsedUrl) {
+function handleAssets(req, res) {
     const filePath = path.join(__dirname, '../public', req.url);
     serveStaticFile(filePath, res);
 }
@@ -433,11 +433,11 @@ const server = http.createServer((req, res) => {
 
     console.log(parsedUrl.pathname);
 
-    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/index.html') {
+    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/home') {
         handleIndex(req, res, parsedUrl);
-    } else if (parsedUrl.pathname === '/movies.html') {
+    } else if (parsedUrl.pathname === '/movies') {
         handleMovies(req, res, parsedUrl);
-    } else if (parsedUrl.pathname === '/details-movie.html') {
+    } else if (parsedUrl.pathname === '/details-movie') {
         handleMovieDetails(req, res, parsedUrl);
     } else if (parsedUrl.pathname === '/search' && req.method === 'GET') {
         handleSearch(req, res, parsedUrl);

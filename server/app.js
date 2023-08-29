@@ -225,7 +225,7 @@ const server = http.createServer((req, res) => {
 
     console.log(parsedUrl.pathname);
 
-    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/index.html') {
+    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/home') {
         const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
         const movies = require(moviesFilePath);
 
@@ -237,9 +237,9 @@ const server = http.createServer((req, res) => {
 
         const movieCards = generateMovieCards(paginatedMovies);
         const totalPages = Math.ceil(movies.length / itemsPerPage);
-        const paginationButtons = generatePaginationButtons(page, totalPages, 'index.html');
+        const paginationButtons = generatePaginationButtons(page, totalPages, 'home');
 
-        const templateFilePath = path.join(__dirname, '../public', 'index.html');
+        const templateFilePath = path.join(__dirname, '../public', 'home');
 
         fs.readFile(templateFilePath, 'utf-8', (err, template) => {
             if (err) {
