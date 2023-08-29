@@ -229,6 +229,8 @@ const routes = [
     { path: '/search', method: 'GET', handler: handleSearch },
     { path: '/assets/', handler: handleAssets },
     { path: '/login', handler: handleLogin },
+    { path: '/register', handler: handleregister },
+
     { handler: handle404 }
 ];
 
@@ -251,7 +253,9 @@ const server = http.createServer((req, res) => {
         handleAssets(req, res);
     }else if (parsedUrl.pathname === '/login') {
         handleLogin(req, res);
-    } else {
+    }else if (parsedUrl.pathname === '/register') {
+        handleregister(req, res);}
+     else {
         handle404(req, res);
     }
 });
@@ -347,7 +351,19 @@ function handleLogin(req, res) {
         }
     });
 }
+function handleregister(req, res) {
+    const templateFilePath = path.join(__dirname, '../public', 'register.html');
 
+    fs.readFile(templateFilePath, 'utf-8', (err, template) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal Server Error');
+        } else {
+            res.setHeader('Content-Type', 'text/html');
+            res.end(template);
+        }
+    });
+}
 function handleMovieDetails(req, res, parsedUrl) {
     const movieId = parsedUrl.searchParams.get('id'); // Assuming your movies have an ID property
 
