@@ -219,44 +219,6 @@ function generatePaginationButtons(currentPage, totalPages, page_name, searchTer
     return buttonsHtml;
 }
 
-// Create server
-const server = http.createServer((req, res) => {
-    const url = req.url;
-    const parsedUrl = new URL(url, `http://${req.headers.host}`);
-
-    console.log(parsedUrl.pathname);
-
-    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/index.html') {
-        handleIndex(req, res, parsedUrl);
-    } else if (parsedUrl.pathname === '/movies.html') {
-        handleMovies(req, res, parsedUrl);
-    } else if (parsedUrl.pathname === '/details-movie.html') {
-        handleMovieDetails(req, res, parsedUrl);
-    } else if (parsedUrl.pathname === '/search' && req.method === 'GET') {
-        handleSearch(req, res, parsedUrl);
-    } else if (url.startsWith('/assets/')) {
-        handleAssets(req, res);
-    } else if (parsedUrl.pathname === '/login') {
-        handleLogin(req, res);
-    } else if (parsedUrl.pathname === '/series') {
-        handleComingSoon(req, res);
-    } else if (parsedUrl.pathname === '/topimdb') {
-        handleComingSoon(req, res);
-    } else if (parsedUrl.pathname === '/tvShows') {
-        handleComingSoon(req, res);
-    } else if (parsedUrl.pathname === '/register') {
-        handleRegister(req, res);
-    } else {
-        handle404(req, res);
-    }
-});
-
-// Start server
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
 // Route handlers implementation
 function handleIndex(req, res, parsedUrl) {
     const moviesFilePath = path.join(__dirname, '../db', 'movies.json');
@@ -463,3 +425,41 @@ function handle404(req, res, parsedUrl) {
         }
     });
 }
+
+// Create server
+const server = http.createServer((req, res) => {
+    const url = req.url;
+    const parsedUrl = new URL(url, `http://${req.headers.host}`);
+
+    console.log(parsedUrl.pathname);
+
+    if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/index.html') {
+        handleIndex(req, res, parsedUrl);
+    } else if (parsedUrl.pathname === '/movies.html') {
+        handleMovies(req, res, parsedUrl);
+    } else if (parsedUrl.pathname === '/details-movie.html') {
+        handleMovieDetails(req, res, parsedUrl);
+    } else if (parsedUrl.pathname === '/search' && req.method === 'GET') {
+        handleSearch(req, res, parsedUrl);
+    } else if (url.startsWith('/assets/')) {
+        handleAssets(req, res);
+    } else if (parsedUrl.pathname === '/login') {
+        handleLogin(req, res);
+    } else if (parsedUrl.pathname === '/series') {
+        handleComingSoon(req, res);
+    } else if (parsedUrl.pathname === '/topimdb') {
+        handleComingSoon(req, res);
+    } else if (parsedUrl.pathname === '/tvShows') {
+        handleComingSoon(req, res);
+    } else if (parsedUrl.pathname === '/register') {
+        handleRegister(req, res);
+    } else {
+        handle404(req, res);
+    }
+});
+
+// Start server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
