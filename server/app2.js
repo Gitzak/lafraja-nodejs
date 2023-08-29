@@ -228,6 +228,7 @@ const routes = [
     { path: '/details-movie.html', handler: handleMovieDetails },
     { path: '/search', method: 'GET', handler: handleSearch },
     { path: '/assets/', handler: handleAssets },
+    { path: '/login', handler: handleLogin },
     { handler: handle404 }
 ];
 
@@ -235,6 +236,8 @@ const routes = [
 const server = http.createServer((req, res) => {
     const url = req.url;
     const parsedUrl = new URL(url, `http://${req.headers.host}`);
+
+    console.log(parsedUrl.pathname);
 
     if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/index.html') {
         handleIndex(req, res, parsedUrl);
@@ -246,6 +249,8 @@ const server = http.createServer((req, res) => {
         handleSearch(req, res, parsedUrl);
     } else if (url.startsWith('/assets/')) {
         handleAssets(req, res);
+    }else if (parsedUrl.pathname === '/login') {
+        handleLogin(req, res);
     } else {
         handle404(req, res);
     }
@@ -325,6 +330,20 @@ function handleMovies(req, res, parsedUrl) {
 
             res.setHeader('Content-Type', 'text/html');
             res.end(modifiedTemplate);
+        }
+    });
+}
+
+function handleLogin(req, res) {
+    const templateFilePath = path.join(__dirname, '../public', 'login.html');
+
+    fs.readFile(templateFilePath, 'utf-8', (err, template) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal Server Error');
+        } else {
+            res.setHeader('Content-Type', 'text/html');
+            res.end(template);
         }
     });
 }

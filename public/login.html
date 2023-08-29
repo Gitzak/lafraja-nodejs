@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>LFRAJA.com</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+    <link href="./assets/css/my_style.css" rel="stylesheet" />
+  </head>
+  <body class="bg-dark">
+    <!-- Start spinner -->
+    <div
+      id="spinner"
+      class="spinner-wrapper justify-content-center align-items-center"
+    >
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <!-- End spinner -->
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow p-3">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="index.html">
+          <img
+            class="img-fluid"
+            width="100"
+            src="./assets/images/Netflix_2015_logo.png"
+            alt=""
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="movies.html">Movies</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Series</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">TV Shows</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Top IMDB</a></li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="search-box-container">
+              <div class="search-box mt-1">
+                <!-- <input type="text" placeholder="Search anything" class="search-input" />
+                                <a href="#" class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                </a> -->
+                <form action="/search" method="GET">
+                  <input
+                    type="text"
+                    name="q"
+                    placeholder="Search anything"
+                    class="search-input"
+                  />
+                  <button type="button" class="search-btn">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+            </li>
+            <li id="btn-sign-in" class="nav-item">
+              <a class="nav-link mt-1" href="#about">Sign In</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Section-->
+    <section class="py-5">
+      <div class="container px-5">
+        <!-- Contact form-->
+        <div class="rounded-3 py-3 px-4 px-md-5 mb-5">
+          <div class="text-center mb-5">
+            <h1 class="fw-bolder text-danger">Sign In</h1>
+          </div>
+          <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+           
+              <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control"
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    data-sb-validations="required,email"
+                    data-sb-can-submit="no"
+                  />
+                  <label for="email">Email address</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="email:required"
+                  >
+                    An email is required.
+                  </div>
+                  <div class="invalid-feedback" data-sb-feedback="email:email">
+                    Email is not valid.
+                  </div>
+                </div>
+                <!-- Password input-->
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control"
+                    id="phone"
+                    type="password"
+                    placeholder="password"
+                    data-sb-validations="required"
+                    data-sb-can-submit="no"
+                  />
+                  <label for="password">Password</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="password:required"
+                  >
+                    A phone number is required.
+                  </div>
+                </div>
+                <div class="d-none" id="submitSuccessMessage">
+                  <div class="text-center mb-3">
+                    <div class="fw-bolder">Form submission successful!</div>
+                    To activate this form, sign up at
+                    <br />
+                    <a href="https://startbootstrap.com/solution/contact-forms"
+                      >https://startbootstrap.com/solution/contact-forms</a
+                    >
+                  </div>
+                </div>
+                <div class="d-none" id="submitErrorMessage">
+                  <div class="text-center text-danger mb-3">
+                    Error sending message!
+                  </div>
+                </div>
+                <!-- Submit Button-->
+                <div class="d-grid">
+                  <button
+                    class="btn  btn-lg "
+                    id="submitButton"
+                    type="submit"
+                    style="background-color: #d7131e ; color : white"
+                  >
+                    Login
+                  </button>
+                  <p class="my-4" style="color: white; font-size: 20px">
+                    New to Netflix?
+                    <a
+                      href="#"
+                      style="
+                        color: #d7131e;
+                        font-size: 20px;
+                        text-decoration: none;
+                      "
+                      >Sign up now.</a
+                    >
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Your Website 2023
+        </p>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="./assets/js/scripts.js"></script>
+  </body>
+</html>
