@@ -17,7 +17,6 @@ function serveStaticFile(filePath, res) {
     });
 }
 
-
 // Search Movies
 function searchMovies(searchTerm, movies, page, itemsPerPage) {
     const startIndex = (page - 1) * itemsPerPage;
@@ -220,22 +219,6 @@ function generatePaginationButtons(currentPage, totalPages, page_name, searchTer
     return buttonsHtml;
 }
 
-// Route handlers
-const routes = [
-    { path: '/', handler: handleIndex },
-    { path: '/index.html', handler: handleIndex },
-    { path: '/movies.html', handler: handleMovies },
-    { path: '/details-movie.html', handler: handleMovieDetails },
-    { path: '/search', method: 'GET', handler: handleSearch },
-    { path: '/assets/', handler: handleAssets },
-    { path: '/login', handler: handleLogin },
-    { path: '/series', handler: handleComingSoon },
-    { path: '/tvShows', handler: handleComingSoon },
-    { path: '/topimdb', handler: handleComingSoon },
-    { path: '/register', handler: handleRegister },
-    { handler: handle404 }
-];
-
 // Create server
 const server = http.createServer((req, res) => {
     const url = req.url;
@@ -255,19 +238,15 @@ const server = http.createServer((req, res) => {
         handleAssets(req, res);
     } else if (parsedUrl.pathname === '/login') {
         handleLogin(req, res);
-    }
-    else if (parsedUrl.pathname === '/series') {
+    } else if (parsedUrl.pathname === '/series') {
         handleComingSoon(req, res);
-    }
-    else if (parsedUrl.pathname === '/topimdb') {
+    } else if (parsedUrl.pathname === '/topimdb') {
         handleComingSoon(req, res);
-    }
-    else if (parsedUrl.pathname === '/tvShows') {
+    } else if (parsedUrl.pathname === '/tvShows') {
         handleComingSoon(req, res);
     } else if (parsedUrl.pathname === '/register') {
         handleRegister(req, res);
-    }
-    else {
+    } else {
         handle404(req, res);
     }
 });
@@ -277,15 +256,6 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
-// Helper function to match routes
-function matchRoute(route, parsedUrl, method) {
-    if (route.method && route.method !== method) {
-        return false;
-    }
-
-    return route.path ? parsedUrl.pathname === route.path : true;
-}
 
 // Route handlers implementation
 function handleIndex(req, res, parsedUrl) {
@@ -363,6 +333,7 @@ function handleLogin(req, res) {
         }
     });
 }
+
 function handleComingSoon(req, res) {
     const templateFilePath = path.join(__dirname, '../public', 'comingsoon.html');
 
@@ -376,20 +347,6 @@ function handleComingSoon(req, res) {
         }
     });
 }
-function handleSeries(req, res) {
-    const templateFilePath = path.join(__dirname, '../public', 'series.html');
-
-    fs.readFile(templateFilePath, 'utf-8', (err, template) => {
-        if (err) {
-            res.writeHead(500, { 'Content-Type': 'text/plain' });
-            res.end('Internal Server Error');
-        } else {
-            res.setHeader('Content-Type', 'text/html');
-            res.end(template);
-        }
-    });
-}
-
 
 function handleRegister(req, res) {
     const templateFilePath = path.join(__dirname, '../public', 'register.html');
@@ -404,6 +361,7 @@ function handleRegister(req, res) {
         }
     });
 }
+
 function handleMovieDetails(req, res, parsedUrl) {
     const movieId = parsedUrl.searchParams.get('id'); // Assuming your movies have an ID property
 
@@ -505,4 +463,3 @@ function handle404(req, res, parsedUrl) {
         }
     });
 }
-
