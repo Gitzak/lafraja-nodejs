@@ -7,8 +7,6 @@ const server = http.createServer((req, res) => {
     const url = req.url;
     const parsedUrl = new URL(url, `http://${req.headers.host}`);
 
-    console.log(parsedUrl.pathname);
-
     if (parsedUrl.pathname === '/' || parsedUrl.pathname === '/home') {
         helpers.handleIndex(req, res, parsedUrl);
     } else if (parsedUrl.pathname === '/movies') {
