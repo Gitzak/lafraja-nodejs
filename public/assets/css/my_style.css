@@ -19,6 +19,13 @@
     background-position: center 40%;
 }
 
+.header-comingsoon {
+    background-image: url('../images/henry-co-21HT36zwLn8-unsplash.jpg');
+    position: relative;
+    background-size: cover;
+    background-position: center 40%;
+}
+
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -55,6 +62,10 @@
 
 #btn-sign-in a:hover {
     background-color: rgb(197, 16, 22);
+}
+
+.py-50{
+    padding: 9rem 0;
 }
 
 @media screen and (min-width: 1200px) {

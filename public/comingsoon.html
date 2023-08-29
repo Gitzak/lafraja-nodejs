@@ -14,6 +14,12 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./assets/css/styles.css" rel="stylesheet" />
         <link href="./assets/css/my_style.css" rel="stylesheet" />
+        <style>
+            section {
+                padding-top: 9rem;
+                padding-bottom: 9rem;
+            }
+        </style>
     </head>
     <body class="bg-dark">
         <!-- Start spinner -->
@@ -32,7 +38,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="movies.html">Movies</a></li>
                         <li class="nav-item"><a class="nav-link" href="series">Series</a></li>
                         <li class="nav-item"><a class="nav-link" href="tvShows">TV Shows</a></li>
@@ -55,35 +61,13 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="py-5 header-home">
+        <header class="py-50 header-comingsoon">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Watch Movies Online Free</h1>
-                    <p class="lead fw-normal text-white mb-0">LFRAJA is one of the best free sites to watch movies online for free</p>
+                    <a class="btn btn-lg btn-danger mt-3" href="index.html">Back to home</a>
                 </div>
             </div>
         </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div id="list-data" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <!-- MovieCards -->
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group me-2 shadow" role="group" aria-label="First group" id="pagination-buttons">
-                                <!-- PaginationButtons -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

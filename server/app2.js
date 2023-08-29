@@ -229,8 +229,10 @@ const routes = [
     { path: '/search', method: 'GET', handler: handleSearch },
     { path: '/assets/', handler: handleAssets },
     { path: '/login', handler: handleLogin },
-    { path: '/register', handler: handleregister },
-
+    { path: '/series', handler: handleComingSoon },
+    { path: '/tvShows', handler: handleComingSoon },
+    { path: '/topimdb', handler: handleComingSoon },
+    { path: '/register', handler: handleRegister },
     { handler: handle404 }
 ];
 
@@ -251,11 +253,21 @@ const server = http.createServer((req, res) => {
         handleSearch(req, res, parsedUrl);
     } else if (url.startsWith('/assets/')) {
         handleAssets(req, res);
-    }else if (parsedUrl.pathname === '/login') {
+    } else if (parsedUrl.pathname === '/login') {
         handleLogin(req, res);
-    }else if (parsedUrl.pathname === '/register') {
-        handleregister(req, res);}
-     else {
+    }
+    else if (parsedUrl.pathname === '/series') {
+        handleComingSoon(req, res);
+    }
+    else if (parsedUrl.pathname === '/topimdb') {
+        handleComingSoon(req, res);
+    }
+    else if (parsedUrl.pathname === '/tvShows') {
+        handleComingSoon(req, res);
+    } else if (parsedUrl.pathname === '/register') {
+        handleRegister(req, res);
+    }
+    else {
         handle404(req, res);
     }
 });
@@ -351,7 +363,35 @@ function handleLogin(req, res) {
         }
     });
 }
-function handleregister(req, res) {
+function handleComingSoon(req, res) {
+    const templateFilePath = path.join(__dirname, '../public', 'comingsoon.html');
+
+    fs.readFile(templateFilePath, 'utf-8', (err, template) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal Server Error');
+        } else {
+            res.setHeader('Content-Type', 'text/html');
+            res.end(template);
+        }
+    });
+}
+function handleSeries(req, res) {
+    const templateFilePath = path.join(__dirname, '../public', 'series.html');
+
+    fs.readFile(templateFilePath, 'utf-8', (err, template) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal Server Error');
+        } else {
+            res.setHeader('Content-Type', 'text/html');
+            res.end(template);
+        }
+    });
+}
+
+
+function handleRegister(req, res) {
     const templateFilePath = path.join(__dirname, '../public', 'register.html');
 
     fs.readFile(templateFilePath, 'utf-8', (err, template) => {
