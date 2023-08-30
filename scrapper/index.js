@@ -23,7 +23,7 @@ async function run() {
 
     let movieLinks = [];
 
-    for (let i = 0; i <= 20; i++) {
+    for (let i = 0; i <= 1; i++) {
         await page.goto('https://sflix.to/movie?page=' + i);
 
         const movieLinksOnPage = await page.evaluate(() =>

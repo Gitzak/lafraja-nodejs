@@ -422,8 +422,6 @@ function handle404(req, res, parsedUrl) {
     });
 }
 
-
-
 module.exports = {
     serveStaticFile,
     searchMovies,
